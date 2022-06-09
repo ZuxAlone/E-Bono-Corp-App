@@ -4,7 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule } from '@angular/material/slider'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ServerErrorsInterceptor } from './interceptors/server-errors.interceptor';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -13,10 +17,27 @@ import { MatSliderModule } from '@angular/material/slider'
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
-    MatSliderModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServerErrorsInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UnauthorizedInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
