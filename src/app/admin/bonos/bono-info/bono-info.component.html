@@ -1,0 +1,42 @@
+<div md-dialog-content class="mb-5" style="height: 80vh; width: 40vw">
+    <h2 class="fw-bold row justify-content-center mb-4 fs-2">Bono {{bono.id}}</h2>
+    <div class="row fs-6 px-5">
+        <div class="col-sm">
+            <p *ngIf="bono.usuarioResponse">Dueño: {{bono.usuarioResponse.nombres}} {{bono.usuarioResponse.apellidos}}</p>
+            <p>Método Financiero: {{bono.metodoFinanciero}}</p>
+            <p>Tasa Anual: {{bono.tasaAnual | number:'1.2-5'}} %</p>
+            <p>Periodo de Pago: {{bono.periodoPago}}</p>
+            <p>Número de Periodos: {{bono.numeroPeriodos}}</p>
+            <p>Valor Nominal: ({{bono.tipoCambio}}) {{bono.valorNominal | number:'1.2-5'}}</p>
+            <p>Anualidad: ({{bono.tipoCambio}}) {{bono.anualidad | number:'1.2-5'}}</p>
+        </div>
+        <div class="col-sm">
+        <p>VAN: {{bono.van | number:'1.2-5'}}</p>
+        <p>TIR: {{bono.tir | number:'1.2-5'}} %</p>
+        <p>Duración: {{bono.duracion | number:'1.2-5'}}</p>
+        <p>Duración Modificada: {{bono.duracionModificada | number:'1.2-5'}}</p>
+        <p>Convexidad: {{bono.convexidad | number:'1.2-5'}}</p>
+        </div>
+    </div>
+
+    <table mat-table [dataSource]="flujos" class="mat-elevation-z8 w-100 my-4">
+
+        <ng-container matColumnDef="Periodo">
+            <th mat-header-cell *matHeaderCellDef> Periodo </th>
+            <td mat-cell *matCellDef="let element"> {{element.periodo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Inversión">
+            <th mat-header-cell *matHeaderCellDef> Inversión </th>
+            <td mat-cell *matCellDef="let element"> {{element.inversion | number:'1.2-5'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Cuota">
+            <th mat-header-cell *matHeaderCellDef> Cuota </th>
+            <td mat-cell *matCellDef="let element"> {{element.cuota | number:'1.2-5'}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

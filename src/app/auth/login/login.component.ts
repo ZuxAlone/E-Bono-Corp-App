@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.login).subscribe((data:any) => {
       console.log(data["body"]["token"])
       this.userStorageService.set(data["body"]);
-      this.router.navigate(["/admin"])
+      this.router.navigate(["/admin/bono-pri"])
     });
   }
 

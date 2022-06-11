@@ -1,0 +1,32 @@
+<div class="container-sm mt-5">
+    <div class="d-flex justify-content-between align-items-center">
+        <label class="fs-2 fw-bold text-left bold">
+            Bonos en el mercado primario
+        </label>
+        <button class="py-2 fs-4 bg-success text-light" mat-raised-button mat-button (click)="nuevoBonoPri()">
+            Emitir Nuevo Bono
+        </button>
+    </div>
+
+    <div class="grid">
+        <div *ngFor="let bono of bonos" class="my-3 px-3">
+            <mat-expansion-panel hideToggle class="bg-light">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="text-left fw-bold fs-5">
+                        Bono {{bono.id}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p *ngIf="bono.usuarioResponse">Emitido por: {{bono.usuarioResponse.nombres}} {{bono.usuarioResponse.apellidos}}</p>
+                <p>Valor Nominal: ({{bono.tipoCambio}}) {{bono.valorNominal | number:'1.2-5'}}</p>
+                <p>Anualidad: ({{bono.tipoCambio}}) {{bono.anualidad | number:'1.2-5'}}</p>
+                <p>Tasa Anual: {{bono.tasaAnual | number:'1.2-5'}} %</p>
+                <p>Número de periodos: {{bono.numeroPeriodos}}</p>
+
+                <mat-action-row class="d-flex justify-content-around">
+                    <button mat-raised-button class="bg-success bg-opacity-75 text-light" (click)="viewDetails(bono)">Ver Detalles</button>
+                    <button mat-raised-button class="bg-secondary bg-opacity-75 text-light" (click)="nuevoBonoSec(bono.id)">Revender</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+        </div>
+    </div>
+</div>
