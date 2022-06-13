@@ -1,9 +1,15 @@
-<div class="container mt-5">
+<div class="container mt-5 w-50">
     <mat-card *ngIf="usuario" class="user bg-light text-dark">
-        <mat-card-title>{{usuario.nombres}} {{usuario.apellidos}}</mat-card-title>
-        <mat-card-content>
-            <p>Correo: {{usuario.correo}}</p>
-            <p>Bonos emitidos: {{usuario.num_bonos_simulados}}</p>
+        <mat-card-title class="text-center fs-1 mt-3">{{usuario.nombres}} {{usuario.apellidos}}</mat-card-title>
+        <mat-card-content class="fs-3 mt-5">
+            <div class="row">
+                <div class="col-sm">
+                    <p>Correo: {{usuario.correo}}</p>
+                </div>
+                <div class="col-sm">
+                    <p>Bonos emitidos: {{usuario.num_bonos_simulados}}</p>
+                </div>
+            </div>
         </mat-card-content>
     </mat-card>
 </div>
