@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBase: 'http://localhost:8081/api/v1',
+  apiBase: 'https://bonos-api.herokuapp.com/api/v1',
   RETRIES: 2
 };
 
